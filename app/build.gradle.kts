@@ -40,6 +40,23 @@ android {
 }
 
 dependencies {
+    // CameraX core library using the camera2 implementation
+    val camerax_version = "1.5.0-alpha05"
+
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+
+    // CameraX Lifecycle library
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    // CameraX View class
+    implementation("androidx.camera:camera-view:${camerax_version}")
+
+    //Splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    //Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.4")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
