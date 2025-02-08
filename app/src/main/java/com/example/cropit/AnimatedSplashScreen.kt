@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,11 +29,16 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
+import com.example.cropit.datastore.CropItStoreModule
 import kotlinx.coroutines.delay
 
 @Composable
 fun AnimatedSplashScreen(navController: NavHostController) {
     var startAnimation by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val dataStore = CropItStoreModule(context)
+    val hasAccountState = dataStore.hasAccount.collectAsState(initial = null)
+
     val alphaAnim = animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
@@ -44,7 +50,10 @@ fun AnimatedSplashScreen(navController: NavHostController) {
         startAnimation = true
         delay(4000)
         navController.popBackStack()
-        navController.navigate("home")
+        hasAccountState.value?.let { hasAccount ->
+             if (hasAccount) navController.navigate("home") else navController.navigate("intro")
+        }
+
     }
     Splash(alpha = alphaAnim.value)
 }

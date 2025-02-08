@@ -37,12 +37,12 @@ class MainActivity : ComponentActivity() {
                     navController.addOnDestinationChangedListener { _, destination, _ ->
                         currentDestination.value = destination.route ?: ""
                     }
-                    val showTopBar = currentDestination.value in listOf("home","topAnime")
-                    val showBottomBar=currentDestination.value in listOf("home","topAnime")
+                    val showTopBar = currentDestination.value in listOf("home","recent")
+                    val showBottomBar=currentDestination.value in listOf("home","recent")
 
                     Scaffold(
-                  //      topBar = {if (showTopBar)TopBar(navController=navController)},
-                  //      bottomBar = { if(showBottomBar)BottomBar(navController = navController) },
+                        topBar = {if (showTopBar)TopBar(navController=navController)},
+                        bottomBar = { if(showBottomBar)BottomBar(navController = navController) },
                         content = { padding ->
                             NavHostContainer(
                                 navController = navController, padding = padding
