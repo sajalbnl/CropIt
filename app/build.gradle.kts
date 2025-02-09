@@ -36,11 +36,13 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
 }
 
 dependencies {
-    // CameraX core library using the camera2 implementation
+    // CameraX
     val camerax_version = "1.5.0-alpha05"
 
     implementation("androidx.camera:camera-core:${camerax_version}")
@@ -54,12 +56,17 @@ dependencies {
     //Splash screen
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // cropper
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.2")
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.8.4")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation ("io.coil-kt:coil-compose:2.6.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
