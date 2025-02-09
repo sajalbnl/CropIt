@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -73,7 +75,6 @@ fun Home(navController: NavController) {
     var capturedImageUri = remember {
         mutableStateOf<Uri>(Uri.EMPTY)
     }
-    val file = context.createImageFile()
     var imageUri = remember { mutableStateOf(Uri.EMPTY) }
 
     val bottomSheetState = remember { mutableStateOf(false) }
@@ -107,13 +108,14 @@ fun Home(navController: NavController) {
                 BuildConfig.APPLICATION_ID + ".provider",
                 newFile
             )
-
-            // **Update both states correctly**
             imageUri.value = newImageUri
+            Handler(Looper.getMainLooper()).postDelayed({
+                cameraLauncher.launch(imageUri.value)
+            }, 300)
 
-            cameraLauncher.launch(newImageUri)
+
         } else {
-            // Request a permission
+
             permissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
