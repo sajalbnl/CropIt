@@ -77,7 +77,7 @@ fun NavHostContainer(
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
         BottomBarScreen.Home,
-        BottomBarScreen.Recent,
+ //       BottomBarScreen.Recent,
     )
     val navStackBackEntry by navController.currentBackStackEntryAsState()
 

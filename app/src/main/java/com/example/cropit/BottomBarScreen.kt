@@ -14,10 +14,10 @@ sealed class BottomBarScreen(
         icon_focused = R.drawable.home
     )
 
-    object Recent : BottomBarScreen(
-        "recent",
-        title = "Recent",
-        icon = R.drawable.recent,
-        icon_focused = R.drawable.recent
-    )
+//    object Recent : BottomBarScreen(
+//        "recent",
+//        title = "Recent",
+//        icon = R.drawable.recent,
+//        icon_focused = R.drawable.recent
+//    )
 }
